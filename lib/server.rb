@@ -282,7 +282,7 @@ class Server < Sinatra::Base
       end
     end
 
-    haml File.read(File.join(Machinery::ROOT, "html/landing_page.html.haml"))
+    haml File.read(File.join(Machinery::ROOT, "html/homepage.html.haml"))
   end
 
   get "/compare/:a/:b" do
