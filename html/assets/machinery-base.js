@@ -26,4 +26,8 @@ $(document).ready(function () {
   $(".btn-reset").click(function(){
     $("#filter").val("").change();
   });
+
+  $(".glyphicon-menu-hamburger").click(function(){
+    $(".sidebar").toggleClass("sidebar-hidden");
+  });
 })

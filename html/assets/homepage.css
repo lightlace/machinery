@@ -1,8 +1,9 @@
+.sidebar-hidden {
+  margin-left: -500px;
+}
 .sidebar {
   background: #3d3936;
   color: #e9e0d6;
-}
-.sidebar {
   width: 500px;
   text-align: center;
 }
