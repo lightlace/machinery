@@ -26,28 +26,30 @@
           %a.btn.btn-default.btn-reset{ :href => "#", :title => "Reset Filter" }
             %span Reset
       .descriptions-container
-        .description-container
-          .row
-            %span.description-name
-              System 1
-            %a.btn.btn-default.show-button
-              Show
-            %a.btn.btn-default.compare-button
-              Compare
-          .row
-            %span.description-date
-              2015-12-01
-            %span.description-ip
-              10.0.0.1
-          .row
-            %span.nav-bar-title
-              - scopes = ["os", "packages", "patterns", "repositories", "users", "groups",
-                 "services", "changed_config_files", "changed_managed_files", "unmanaged_files"]
-              - scopes.each do |scope|
-                %a.btn.btn-default.btn-sm{ :href => "##{scope}", :title => scope_title(scope),
-                  "data-toggle"=>"popover", "data-content" => scope_help(scope),
-                  :class => nav_class(scope) }
-                  %span= scope_initials(scope)
+        - @all_descriptions.each do |key, value|
+          .description-container
+            .row
+              %span.description-name
+                = key
+              %a.btn.btn-default.show-button{ :href => "/#{key}" }
+                Show
+              %a.btn.btn-default.compare-button
+                Compare
+            .row
+              %span.description-date
+                %span.glyphicon.glyphicon-time.icon
+                = value["date"]
+              %span.description-ip
+                %span.icon.at-icon
+                  @
+                = value["host"].join(", ")
+            .row
+              %span.nav-bar-title
+                - value["scopes"].map { |s| s.match(/^[a-z\-]*/)[0].gsub("-", "_") }.each do |scope|
+                  %a.btn.btn-default.btn-sm{ :href => "##{scope}", :title => scope_title(scope),
+                    "data-toggle"=>"popover", "data-content" => scope_help(scope),
+                    :class => nav_class(scope) }
+                    %span= scope_initials(scope)
 
 
     .container-fluid
