@@ -18,5 +18,59 @@
     = render_partial "sidebar"
 
     .container-fluid
-      Welcome to Machinery
-
+      .welcome
+        %h1
+          Welcome to Machinery
+        %h2
+          Information
+        .row
+          .col-sm-6.col-md-4
+            .thumbnail
+              .caption
+                %h3 Documentation
+                %p
+                  The best place to learn how to use machinery is our documentation.
+                %p
+                  %a.btn.btn-default{ href: "/site/docs/", role: "button" }
+                    Learn More
+          .col-sm-6.col-md-4
+            .thumbnail
+              .caption
+                %h3 Open Source
+                %p
+                  Machinery's code base is open sourced and shared via github.com.
+                %p
+                  %a.btn.btn-default{ href: "https://github.com/SUSE/machinery", role: "button" }
+                    Learn More
+          .col-sm-6.col-md-4
+            .thumbnail
+              .caption
+                %h3 Official Website
+                %p
+                  What is machinery? Visit our official website.
+                %p
+                  %a.btn.btn-default{ href: "http://machinery-project.org/", role: "button" }
+                    Learn More
+        %h2
+          Stats
+        .row
+          .col-sm-6.col-md-4
+            .thumbnail
+              .caption
+                %h3 System Descriptions
+                %p
+                  You have inspected a total of
+                  = @all_descriptions.count
+                  system descriptions. And they are using XX M of space in your system.
+          - last_inspection = @all_descriptions.sort{ |x, y| x.last["date"] <=> y.last["date"]}.last
+          - if last_inspection
+            .col-sm-6.col-md-4
+              .thumbnail
+                .caption
+                  %h3 Last Inspection
+                  %p
+                    Your last inspected system is
+                    = last_inspection[0]
+                    on
+                    = last_inspection[1]["date"]
+                    \.
