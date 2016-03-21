@@ -256,3 +256,81 @@ h1 {
   min-width: 32px;
   min-height: 32px;
 }
+.hamburger-menu-container {
+  font-size: 23px;
+  margin-right: -28px;
+  background: #3d3936;
+  color: #e9e0d6;
+  position: fixed;
+  top: 0;
+  left: 500px;
+  z-index: 5;
+  width: 30px;
+}
+.sidebar-hidden {
+  margin-left: -500px;
+}
+.sidebar {
+  background: #3d3936;
+  color: #e9e0d6;
+  width: 500px;
+  height:100%;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  -webkit-box-shadow: 10px 0 5px -2px #888;
+          box-shadow: 10px 0 5px -2px #888;
+  overflow:scroll;
+  overflow-x:hidden;
+}
+.sidebar .nav-bar-title {
+  margin-left: 25px;
+}
+.descriptions-container {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+.selected-description {
+  border: 2px solid #E6AB5B !important;
+}
+.description-container {
+  border-radius: 10px;
+  border: 2px solid #000;
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 5px;
+  height: 110px;
+  margin-bottom: 5px;
+}
+.description-name {
+  font-size: 25px;
+  float: left;
+  margin-left: 30px;
+}
+.description-date {
+  float: left;
+  margin-left: 30px;
+}
+.description-ip {
+  float: left;
+  margin-left: 50px;
+}
+.compare-button {
+  float: right;
+  margin-right: 5px;
+}
+.show-button {
+  float: right;
+  margin-right: 21px;
+}
+.icon {
+  color: #E6AB5B;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 5px;
+}
+.at-icon {
+  font-size: 17px;
+}

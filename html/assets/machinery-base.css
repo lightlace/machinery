@@ -2424,12 +2424,6 @@ input[type="button"].btn-block {
 .glyphicon-heart:before {
     content: "\e005";
 }
-.glyphicon-menu-hamburger {
-  font-size: 23px;
-  float: right;
-  margin-right: -28px;
-  background: #3d3936;
-}
 .glyphicon-menu-hamburger:before {
   content: "\e236";
 }
