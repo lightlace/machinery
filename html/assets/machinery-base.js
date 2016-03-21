@@ -28,6 +28,7 @@ $(document).ready(function () {
   });
 
   $(".glyphicon-menu-hamburger").click(function(){
+    $(".hamburger-menu-container").toggleClass("sidebar-hidden");
     $(".sidebar").toggleClass("sidebar-hidden");
   });
 })

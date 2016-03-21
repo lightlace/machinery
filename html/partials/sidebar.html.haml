@@ -1,0 +1,48 @@
+.hamburger-menu-container
+  %span.glyphicon.glyphicon-menu-hamburger
+.sidebar
+  .row
+    .h1
+      System Descriptions
+  .row
+    .filter-input.col-md-offset-1
+      %input.col-md-8#filter{ :placeholder => "search" }
+      %a.btn.btn-default.btn-reset{ :href => "#", :title => "Reset Filter" }
+        %span Reset
+  .descriptions-container
+    - @all_descriptions.each do |key, value|
+      - selected = ""
+      - compare = { href: "#", disabled: "disabled" }
+      - if @description && @description.name == key
+        - selected = "selected-description"
+      - if @description_a && @description_a.name == key
+        - selected = "selected-description"
+      - if @description_b && @description_b.name == key
+        - selected = "selected-description"
+      - if @description && @description.name != key
+        - compare_url = "/compare/#{@description.name}/#{key}"
+        - compare = { href: compare_url }
+      .description-container{ class: selected }
+        .row
+          %span.description-name
+            = key
+          %a.btn.btn-default.show-button{ :href => "/#{key}" }
+            Show
+          %a.btn.btn-default.compare-button{ compare }
+            Compare
+        .row
+          %span.description-date
+            %span.glyphicon.glyphicon-time.icon
+            = value["date"]
+          %span.description-ip
+            %span.icon.at-icon
+              @
+            = value["host"].join(", ")
+        .row
+          %span.nav-bar-title
+            - value["scopes"].map { |s| s.match(/^[a-z\-]*/)[0].gsub("-", "_") }.each do |scope|
+              %a.btn.btn-default.btn-sm{ :href => "##{scope}", :title => scope_title(scope),
+                "data-toggle"=>"popover", "data-content" => scope_help(scope),
+                :class => nav_class(scope) }
+                %span= scope_initials(scope)
+
