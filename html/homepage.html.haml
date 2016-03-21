@@ -15,42 +15,7 @@
     %script{ :src => "assets/bootstrap-popover.js" }
 
   %body
-    .sidebar
-      %span.glyphicon.glyphicon-menu-hamburger
-      .row
-        .h1
-          System Descriptions
-      .row
-        .filter-input.col-md-offset-1
-          %input.col-md-8#filter{ :placeholder => "search" }
-          %a.btn.btn-default.btn-reset{ :href => "#", :title => "Reset Filter" }
-            %span Reset
-      .descriptions-container
-        - @all_descriptions.each do |key, value|
-          .description-container
-            .row
-              %span.description-name
-                = key
-              %a.btn.btn-default.show-button{ :href => "/#{key}" }
-                Show
-              %a.btn.btn-default.compare-button
-                Compare
-            .row
-              %span.description-date
-                %span.glyphicon.glyphicon-time.icon
-                = value["date"]
-              %span.description-ip
-                %span.icon.at-icon
-                  @
-                = value["host"].join(", ")
-            .row
-              %span.nav-bar-title
-                - value["scopes"].map { |s| s.match(/^[a-z\-]*/)[0].gsub("-", "_") }.each do |scope|
-                  %a.btn.btn-default.btn-sm{ :href => "##{scope}", :title => scope_title(scope),
-                    "data-toggle"=>"popover", "data-content" => scope_help(scope),
-                    :class => nav_class(scope) }
-                    %span= scope_initials(scope)
-
+    = render_partial "sidebar"
 
     .container-fluid
       Welcome to Machinery

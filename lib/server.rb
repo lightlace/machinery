@@ -221,36 +221,7 @@ class Server < Sinatra::Base
     end
   end
 
-  helpers Helpers
-
-  # Serve the 'manual/site' directory under /site using Rack::TryStatic
-  use Rack::TryStatic,
-    root: File.join(Machinery::ROOT, "manual"),
-    urls: %w[/site],
-    try: ["index.html"]
-
-
-  get "/descriptions/:id/files/:scope/*" do
-    description = SystemDescription.load(params[:id], settings.system_description_store)
-    filename = File.join("/", params["splat"].first)
-
-    file = description[params[:scope]].find { |f| f.name == filename }
-
-    if request.accept.first.to_s == "text/plain" && file.binary?
-      status 406
-      return "binary file"
-    end
-
-    content = file.content
-    type = MimeMagic.by_path(filename) || MimeMagic.by_magic(content) || "text/plain"
-
-    content_type type
-    attachment File.basename(filename)
-
-    content
-  end
-
-  get "/" do
+  def all_descriptions
     descriptions = settings.system_description_store.list
     @all_descriptions = Hash.new
 
@@ -281,11 +252,46 @@ class Server < Sinatra::Base
         @errors.push(e)
       end
     end
+  end
+
+  helpers Helpers
+
+  # Serve the 'manual/site' directory under /site using Rack::TryStatic
+  use Rack::TryStatic,
+    root: File.join(Machinery::ROOT, "manual"),
+    urls: %w[/site],
+    try: ["index.html"]
+
+
+  get "/descriptions/:id/files/:scope/*" do
+    description = SystemDescription.load(params[:id], settings.system_description_store)
+    filename = File.join("/", params["splat"].first)
+
+    file = description[params[:scope]].find { |f| f.name == filename }
+
+    if request.accept.first.to_s == "text/plain" && file.binary?
+      status 406
+      return "binary file"
+    end
+
+    content = file.content
+    type = MimeMagic.by_path(filename) || MimeMagic.by_magic(content) || "text/plain"
+
+    content_type type
+    attachment File.basename(filename)
+
+    content
+  end
+
+  get "/" do
+    all_descriptions
 
     haml File.read(File.join(Machinery::ROOT, "html/homepage.html.haml"))
   end
 
   get "/compare/:a/:b" do
+    all_descriptions
+
     @description_a = SystemDescription.load(params[:a], settings.system_description_store)
     @description_b = SystemDescription.load(params[:b], settings.system_description_store)
 
@@ -328,6 +334,7 @@ class Server < Sinatra::Base
   end
 
   get "/:id" do
+    all_descriptions
     @description = SystemDescription.load(params[:id], settings.system_description_store)
 
     diffs_dir = @description.scope_file_store("analyze/changed_config_files_diffs").path
