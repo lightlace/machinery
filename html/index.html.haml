@@ -15,9 +15,26 @@
     %script{ :src => "assets/show/machinery.js" }
     %script{ :src => "assets/bootstrap-tooltip.js" }
     %script{ :src => "assets/bootstrap-popover.js" }
+    %script{ :src => "assets/bootstrap-dropdown.js" }
 
   %body{ "data-description" => @description.name }
-    = render_partial "sidebar"
+    .container-fluid
+      #nav-bar
+        .row
+          .col-md-2.col-md-offset-2
+            .btn-group
+              %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
+                = @description.name
+                %span.caret
+              .dropdown-menu
+                = render_partial "sidebar", side: "left"
+          .col-md-2.col-md-offset-2
+            .btn-group
+              %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
+                Choose system description to compare
+                %span.caret
+              .dropdown-menu
+                = render_partial "sidebar", side: "right"
 
     - scopes = ["os", "packages", "patterns", "repositories", "users", "groups",
        "services", "changed_config_files", "changed_managed_files", "unmanaged_files"]
@@ -45,42 +62,42 @@
         %textarea.content
 
     .container-fluid
-      #nav-bar
-        .row
-          .col-xs-1
-          .col-xs-10
-            %h1
-              System '#{@description.name}'
+      -# #nav-bar
+      -#   .row
+      -#     .col-xs-1
+      -#     .col-xs-10
+      -#       %h1
+      -#         System '#{@description.name}'
 
-            %a.inspection_details{ :href => "#", "data-toggle" => "popover" } (inspection details)
-        .row
-          .col-xs-1
-            %a#expand-all{ :href => "#", :style => "display: none" }
-              Expand all
-            %a#collapse-all{ :href => "#" }
-              Collapse all
-          .col-xs-10.nav-buttons
-            %small.pull-right
-              created by
-              %a{ :href => "http://machinery-project.org", :target => "_blank" }
-                Machinery
-              %br
-              %a{ :href => "/site/docs/", :target => "_blank" }
-                Machinery documentation
-            .filter-input.col-md-4
-              %input.col-md-8#filter{ :placeholder => "Type To Filter" }
-              %a.btn.btn-default.btn-reset{ :href => "#", :title => "Reset Filter" }
-                %span Reset
+      -#       %a.inspection_details{ :href => "#", "data-toggle" => "popover" } (inspection details)
+      -#   .row
+      -#     .col-xs-1
+      -#       %a#expand-all{ :href => "#", :style => "display: none" }
+      -#         Expand all
+      -#       %a#collapse-all{ :href => "#" }
+      -#         Collapse all
+      -#     .col-xs-10.nav-buttons
+      -#       %small.pull-right
+      -#         created by
+      -#         %a{ :href => "http://machinery-project.org", :target => "_blank" }
+      -#           Machinery
+      -#         %br
+      -#         %a{ :href => "/site/docs/", :target => "_blank" }
+      -#           Machinery documentation
+      -#       .filter-input.col-md-4
+      -#         %input.col-md-8#filter{ :placeholder => "Type To Filter" }
+      -#         %a.btn.btn-default.btn-reset{ :href => "#", :title => "Reset Filter" }
+      -#           %span Reset
 
-            %span.scope-navigation
-              %span.nav-bar-title
-                Scopes:
+      -#       %span.scope-navigation
+      -#         %span.nav-bar-title
+      -#           Scopes:
 
-              - scopes.each do |scope|
-                %a.btn.btn-default.btn-sm{ :href => "##{scope}", :title => scope_title(scope),
-                  "data-toggle"=>"popover", "data-content" => scope_help(scope),
-                  :class => nav_class(scope) }
-                  %span= scope_initials(scope)
+      -#         - scopes.each do |scope|
+      -#           %a.btn.btn-default.btn-sm{ :href => "##{scope}", :title => scope_title(scope),
+      -#             "data-toggle"=>"popover", "data-content" => scope_help(scope),
+      -#             :class => nav_class(scope) }
+      -#             %span= scope_initials(scope)
 
       #content_container
 

@@ -256,34 +256,20 @@ h1 {
   min-width: 32px;
   min-height: 32px;
 }
-.hamburger-menu-container {
-  font-size: 23px;
-  margin-right: -28px;
-  background: #3d3936;
-  color: #e9e0d6;
-  position: fixed;
-  top: 0;
-  left: 500px;
-  z-index: 5;
-  width: 30px;
-}
-.sidebar-hidden {
-  margin-left: -500px;
+.description-selector {
+  width: 500px;
 }
 .sidebar {
   background: #3d3936;
   color: #e9e0d6;
+  height:90%;
   width: 500px;
-  height:100%;
   text-align: center;
-  position: fixed;
   top: 0;
   left: 0;
   z-index: 3;
   -webkit-box-shadow: 10px 0 5px -2px #888;
           box-shadow: 10px 0 5px -2px #888;
-  overflow:scroll;
-  overflow-x:hidden;
 }
 .sidebar .nav-bar-title {
   margin-left: 25px;
@@ -319,7 +305,7 @@ h1 {
 }
 .compare-button {
   float: right;
-  margin-right: 5px;
+  margin-right: 21px;
 }
 .show-button {
   float: right;

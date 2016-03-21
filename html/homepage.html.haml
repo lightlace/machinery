@@ -10,14 +10,30 @@
     %script{ :src => "assets/jquery-2.1.1.min.js" }
     %script{ :src => "assets/jquery.searcher.min.js" }
     %script{ :src => "assets/machinery-base.js" }
-    -# %script{ :src => "assets/show/machinery.js" }
+    %script{ :src => "assets/show/machinery.js" }
     %script{ :src => "assets/bootstrap-tooltip.js" }
     %script{ :src => "assets/bootstrap-popover.js" }
+    %script{ :src => "assets/bootstrap-dropdown.js" }
 
   %body
-    = render_partial "sidebar"
-
     .container-fluid
+      #nav-bar
+        .row
+          .col-md-2.col-md-offset-2
+            .btn-group
+              %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
+                Choose system description to show
+                %span.caret
+              .dropdown-menu
+                = render_partial "sidebar", side: "left"
+          .col-md-2.col-md-offset-2
+            .btn-group
+              %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", data_toggle: "dropdown", disabled: "disabled" }
+                Choose system description to compare
+                %span.caret
+              .dropdown-menu
+                = render_partial "sidebar", side: "right"
+
       .welcome
         %h1
           Welcome to Machinery
