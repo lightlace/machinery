@@ -320,3 +320,9 @@ h1 {
 .at-icon {
   font-size: 17px;
 }
+
+.scrollable-menu {
+    height: auto;
+    max-height: 700px;
+    overflow-x: hidden;
+}

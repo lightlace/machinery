@@ -26,14 +26,14 @@
               %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
                 = @description.name
                 %span.caret
-              .dropdown-menu
+              .dropdown-menu.scrollable-menu
                 = render_partial "sidebar", side: "left"
           .col-md-2.col-md-offset-2
             .btn-group
               %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
                 Choose system description to compare
                 %span.caret
-              .dropdown-menu
+              .dropdown-menu.scrollable-menu
                 = render_partial "sidebar", side: "right"
 
     - scopes = ["os", "packages", "patterns", "repositories", "users", "groups",
