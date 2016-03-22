@@ -257,13 +257,13 @@ h1 {
   min-height: 32px;
 }
 .description-selector {
-  width: 500px;
+  width: 480px;
 }
 .sidebar {
   background: #3d3936;
   color: #e9e0d6;
   height:90%;
-  width: 500px;
+  width: 480px;
   text-align: center;
   top: 0;
   left: 0;
