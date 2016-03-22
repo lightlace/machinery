@@ -17,6 +17,12 @@
         - selected = "selected-description"
       - if @description_b && @description_b.name == key
         - selected = "selected-description"
+      - if @description_a && @description_a.name != key && @description_b && @description_b.name != key
+        - if side == "left"
+          - compare_url = "/compare/#{key}/#{@description_b.name}"
+        - if side == "right"
+          - compare_url = "/compare/#{@description_a.name}/#{key}"
+        - compare = { href: compare_url }
       - if @description && @description.name != key
         - compare_url = "/compare/#{@description.name}/#{key}"
         - compare = { href: compare_url }
@@ -27,11 +33,8 @@
           - if side == "left"
             %a.btn.btn-default.show-button{ :href => "/#{key}" }
               Show
-          -# %a.btn.btn-default.show-button{ :href => "/#{key}" }
-          -#   Show
-          - if side == "right"
-            %a.btn.btn-default.compare-button{ compare }
-              Compare
+          %a.btn.btn-default.compare-button{ compare }
+            Compare
         .row
           %span.description-date
             %span.glyphicon.glyphicon-time.icon
