@@ -38,11 +38,16 @@
           - @all_descriptions.each do |key, value|
             %tr
               %td
-                - if @description
-                  - url = "/compare/#{@description.name}/#{key}"
-                  %a.compare-description{ :href => url }
-                    #{key}
                 - url = "/#{key}"
+                - compare_url = ""
+                - if @description
+                  - compare_url = "/compare/#{@description.name}/#{key}"
+                - if @description_a && @description_b
+                  - url = "/compare/#{key}/#{@description_b.name}"
+                  - compare_url = "/compare/#{@description_a.name}/#{key}"
+                - unless compare_url.empty?
+                  %a.compare-description{ :href => compare_url }
+                    #{key}
                 %a.show-description{ :href => url }
                   #{key}
               %td= value["date"]

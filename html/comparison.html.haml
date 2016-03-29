@@ -7,6 +7,7 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     %link{:href => "/assets/machinery-base.css", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "/assets/machinery.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/assets/index.css", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "/assets/jquery-2.1.1.min.js"}
     %script{:src => "/assets/transition.js"}
     %script{:src => "/assets/collapse.js"}
@@ -23,22 +24,29 @@
 
   %body{ "data-description-a" => @description_a.name, "data-description-b" => @description_b.name }
     .container-fluid
-      #nav-bar
+      #description-selector-bar
         .row
           .col-lg-2.col-lg-offset-2.col-md-2
+            .description-selector-overlay
             .btn-group
-              %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
-                = @description_a.name
-                %span.caret
-              .dropdown-menu.scrollable-menu
-                = render_partial "sidebar", side: "left"
+              %button.description-selector.btn.btn-default-alt.machinery-dropdown.selects
+                .description-selector-header
+                  System
+                .description-selector-name
+                  = @description_a.name
+                .description-selector-icon
+                  %span.glyphicon.glyphicon-th-list
           .col-lg-2.col-lg-offset-2.col-md-2.col-md-offset-4
             .btn-group
-              %button.description-selector.btn.btn-default.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" }
-                = @description_b.name
-                %span.caret
-              .dropdown-menu.scrollable-menu
-                = render_partial "sidebar", side: "right"
+              %button.description-selector.btn.btn-default-alt.machinery-dropdown.compares
+                .description-selector-header
+                  System
+                .description-selector-name
+                  = @description_b.name
+                .description-selector-icon
+                  %span.glyphicon.glyphicon-th-list
+          .description-selector-content.scrollable-menu
+            = render_partial "landing_page"
 
     - scopes = ["os", "packages", "patterns", "repositories", "users", "groups",
        "services", "changed_config_files", "changed_managed_files", "unmanaged_files"]
