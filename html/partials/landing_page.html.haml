@@ -38,7 +38,12 @@
           - @all_descriptions.each do |key, value|
             %tr
               %td
-                %a{ :href => "/#{key}" }
+                - if @description
+                  - url = "/compare/#{@description.name}/#{key}"
+                  %a.compare-description{ :href => url }
+                    #{key}
+                - url = "/#{key}"
+                %a.show-description{ :href => url }
                   #{key}
               %td= value["date"]
               %td= value["scopes"].join(", ")

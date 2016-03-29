@@ -40,5 +40,13 @@ $(document).ready(function () {
     }else{
       $(".machinery-dropdown").not(this).removeAttr('disabled');
     }
+    if($(this).hasClass('selects')){
+      $(".compare-description").hide();
+      $(".show-description").show();
+    }
+    if($(this).hasClass('compares')){
+      $(".compare-description").show();
+      $(".show-description").hide();
+    }
   });
 })
