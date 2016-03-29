@@ -60,13 +60,49 @@ describe Server do
   end
 
   describe "show" do
-    describe "GET /:id" do
-      it "returns the page" do
-        get "/#{description_a.name}"
+    context "description with incompatible format version" do
+      describe "GET /:id" do
+        let(:description_d) {
+          create_test_description(
+            name: "description_d",
+            store_on_disk: true,
+            scopes: ["os"],
+            format_version: 7
+          )
+        }
+        let(:description_e) {
+          create_test_description(
+            name: "description_e",
+            store_on_disk: true,
+            scopes: ["os"],
+            format_version: 12
+          )
+        }
 
-        expect(last_response).to be_ok
-        expect(last_response.body).
-          to include("#{description_a.name} - Machinery System Description")
+        it "returns update instructions for lower format versions" do
+          get "/#{description_d.name}"
+          expect(last_response).to be_ok
+          expect(last_response.body).
+            to include("Machinery Error: incompatible system description")
+        end
+
+        it "returns update instructions for higher format versions" do
+          get "/#{description_e.name}"
+          expect(last_response).to be_ok
+          expect(last_response.body).
+            to include("Machinery Error: incompatible system description")
+        end
+      end
+    end
+
+    context "compatible format version" do
+      describe "GET /:id" do
+        it "returns the page" do
+          get "/#{description_a.name}"
+          expect(last_response).to be_ok
+          expect(last_response.body).
+            to include("#{description_a.name} - Machinery System Description")
+        end
       end
     end
 
