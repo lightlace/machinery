@@ -2073,6 +2073,48 @@ fieldset[disabled] .btn-default.active {
     color: #ffffff;
     background-color: #333333;
 }
+.btn-default-alt {
+    color: #333333;
+    background-color: #3d3936;
+    border-color: #ffffff;
+}
+.btn-default-alt:hover,
+.btn-default-alt:focus,
+.btn-default-alt:active,
+.btn-default-alt.active,
+.open .dropdown-toggle.btn-default-alt {
+    color: #333333;
+    background-color: #3d3936;
+    border-color: #ffffff;
+}
+.btn-default-alt:active,
+.btn-default-alt.active,
+.open .dropdown-toggle.btn-default-alt {
+    background-image: none;
+}
+.btn-default-alt.disabled,
+.btn-default-alt[disabled],
+fieldset[disabled] .btn-default-alt,
+.btn-default-alt.disabled:hover,
+.btn-default-alt[disabled]:hover,
+fieldset[disabled] .btn-default-alt:hover,
+.btn-default-alt.disabled:focus,
+.btn-default-alt[disabled]:focus,
+fieldset[disabled] .btn-default-alt:focus,
+.btn-default-alt.disabled:active,
+.btn-default-alt[disabled]:active,
+fieldset[disabled] .btn-default-alt:active,
+.btn-default-alt.disabled.active,
+.btn-default-alt[disabled].active,
+fieldset[disabled] .btn-default-alt.active {
+    background-color: #555;
+    border-color: #000000;
+    color: #000000;
+}
+.btn-default-alt .badge {
+    color: #ffffff;
+    background-color: #333333;
+}
 .btn-primary {
     color: #ffffff;
     background-color: #428bca;

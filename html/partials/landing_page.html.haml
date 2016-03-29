@@ -1,0 +1,45 @@
+.container-fluid
+  #inner-nav-bar
+    .row
+      .col-xs-1
+      .col-xs-10
+        %h1
+          System Descriptions
+    .row
+      .filter-input.col-md-3.col-md-offset-1
+        %input.col-md-8#filter{ :placeholder => "Type to Filter" }
+        %a.btn.btn-default.btn-reset{ :href => "#", :title => "Reset Filter" }
+          %span Reset
+
+      .col-xs-6.nav-buttons
+        %small.pull-right
+          created by
+          %a{ :href => "http://machinery-project.org", :target => "_blank" }
+            Machinery
+          %br
+          %a{ :href => "/site/docs/", :target => "_blank" }
+            Machinery documentation
+
+  #inner-content_container
+    = render_partial "landing_page/alert"
+    - if @all_descriptions.empty?
+      %p.col-md-5.col-md-offset-1
+        %strong
+          No system descriptions available on your machine.
+    - else
+      %table.table.table-striped.table-condensed.filterable
+        %thead
+          %tr
+            %th Name
+            %th Last update
+            %th Scopes
+            %th Host
+        %tbody
+          - @all_descriptions.each do |key, value|
+            %tr
+              %td
+                %a{ :href => "/#{key}" }
+                  #{key}
+              %td= value["date"]
+              %td= value["scopes"].join(", ")
+              %td= value["host"].join(", ")
