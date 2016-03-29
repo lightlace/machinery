@@ -21,26 +21,23 @@
         .row
           .col-lg-2.col-lg-offset-2.col-md-2
             .description-selector-overlay
-            .btn-group.open
-              %button.description-selector.btn.btn-default-alt.dropdown-toggle{ type: "button", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "true" }
+            .btn-group
+              %button.description-selector.btn.btn-default-alt
                 .description-selector-header
                   System
                 .description-selector-name
-                  Select a System
+                  Select a system
                 .description-selector-icon
                   %span.glyphicon.glyphicon-th-list
-              .dropdown-menu.scrollable-menu
-                -# = render_partial "sidebar", side: "left"
-                = render_partial "landing_page"
           .col-lg-2.col-lg-offset-2.col-md-2.col-md-offset-4
             .btn-group
-              %button.description-selector.btn.btn-default-alt.dropdown-toggle{ type: "button", data_toggle: "dropdown", disabled: "disabled" }
+              %button.description-selector.btn.btn-default-alt.machinery-dropdown{ disabled: "disabled" }
                 .description-selector-header
                   System
                 .description-selector-name
                   Select a system to compare
                 .description-selector-icon
                   %span.glyphicon.glyphicon-th-list
-              .dropdown-menu.scrollable-menu
-                = render_partial "sidebar", side: "right"
+          .description-selector-content.scrollable-menu
+            = render_partial "landing_page"
 

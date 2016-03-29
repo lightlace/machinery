@@ -6,6 +6,7 @@
   top: 90px;
   width: 90vw;
   left: 5%;
+  display: none;
 }
 .description-selector-overlay {
   opacity:    0.5;
@@ -15,4 +16,5 @@
   top:        0;
   left:       0;
   position:   fixed;
+  display: none;
 }

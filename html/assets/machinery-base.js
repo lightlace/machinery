@@ -31,4 +31,14 @@ $(document).ready(function () {
     $(".hamburger-menu-container").toggleClass("sidebar-hidden");
     $(".sidebar").toggleClass("sidebar-hidden");
   });
+
+  $(".machinery-dropdown").click(function(){
+    $(".description-selector-content").toggle();
+    $(".description-selector-overlay").toggle();
+    if($(".description-selector-overlay").is(':visible')) {
+      $(".machinery-dropdown").not(this).attr('disabled', 'disabled');
+    }else{
+      $(".machinery-dropdown").not(this).removeAttr('disabled');
+    }
+  });
 })
