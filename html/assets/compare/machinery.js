@@ -119,6 +119,12 @@ $(document).ready(function () {
   highlightCurrentScope();
 
   $(".close-comparison").click(function(){
-    window.location.href = '/' + $(".description-selector-name").first().text().trim();
+    if($(this).parent().find(".description-selector").hasClass("compares")) {
+      window.location.href = '/' + $(".description-selector-name").first().text().trim();
+    }
+
+    if($(this).parent().find(".description-selector").hasClass("selects")) {
+      window.location.href = '/' + $(".description-selector-name").last().text().trim();
+    }
   });
 });

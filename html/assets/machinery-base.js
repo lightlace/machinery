@@ -37,8 +37,12 @@ $(document).ready(function () {
     $(".description-selector-overlay").toggle();
     if($(".description-selector-overlay").is(':visible')) {
       $(".machinery-dropdown").not(this).attr('disabled', 'disabled');
+      $(".close-comparison").attr('disabled', 'disabled');
     }else{
       $(".machinery-dropdown").not(this).removeAttr('disabled');
+      if (window.location.href.indexOf("/compare/") > -1) {
+        $(".close-comparison").removeAttr('disabled');
+      }
     }
     if($(this).hasClass('selects')){
       $(".compare-description").hide();

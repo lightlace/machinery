@@ -2108,7 +2108,7 @@ fieldset[disabled] .btn-default-alt:active,
 .btn-default-alt[disabled].active,
 fieldset[disabled] .btn-default-alt.active {
     background-color: #555;
-    border-color: #000000;
+    border-color: #FFF;
     color: #000000;
 }
 .btn-default-alt .badge {

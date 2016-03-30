@@ -22,7 +22,7 @@
     .container-fluid
       #description-selector-bar
         .row
-          .col-lg-4.col-md-2
+          .col-lg-6.col-md-6.text-center
             .description-selector-overlay
             .btn-group
               %button.description-selector.btn.btn-default-alt.machinery-dropdown.selects
@@ -32,7 +32,10 @@
                   = @description.name
                 .description-selector-icon
                   %span.glyphicon.glyphicon-th-list
-          .col-lg-4.col-lg-offset-2.col-md-2.col-md-offset-4
+              %button.close-comparison.btn.btn-default-alt{ disabled: "disabled" }
+                .close-comparison-icon
+                  %span.glyphicon.glyphicon-remove-circle
+          .col-lg-6.col-md-6.text-center
             .btn-group
               %button.description-selector.btn.btn-default-alt.machinery-dropdown.compares
                 .description-selector-header

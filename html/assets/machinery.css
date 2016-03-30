@@ -267,8 +267,15 @@ h1 {
   height: 100px;
   padding-top: 12px;
 }
-.description-selector {
-  width: 480px;
+@media (min-width: 992px) {
+  .description-selector {
+    width: 425px;
+  }
+}
+@media (min-width: 1200px) {
+  .description-selector {
+    width: 550px;
+  }
 }
 .description-selector-header {
   color: #FFF;
@@ -353,7 +360,7 @@ h1 {
 
 .scrollable-menu {
   height: auto;
-  max-height: 700px;
+  max-height: 85vh;
   overflow-x: hidden;
 }
 #inner-nav-bar {
@@ -364,7 +371,7 @@ h1 {
   border-bottom-width: 1px;
   position: fixed;
   float: left;
-  width: 88vw;
+  width: 95vw;
 }
 #inner-content_container {
   margin-top: 130px;
