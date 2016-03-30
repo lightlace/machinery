@@ -117,4 +117,8 @@ $(document).ready(function () {
     setCurrentScopeState(anchor);
   });
   highlightCurrentScope();
+
+  $(".close-comparison").click(function(){
+    window.location.href = '/' + $(".description-selector-name").first().text().trim();
+  });
 });

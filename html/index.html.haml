@@ -22,7 +22,7 @@
     .container-fluid
       #description-selector-bar
         .row
-          .col-lg-2.col-lg-offset-2.col-md-2
+          .col-lg-4.col-md-2
             .description-selector-overlay
             .btn-group
               %button.description-selector.btn.btn-default-alt.machinery-dropdown.selects
@@ -32,7 +32,7 @@
                   = @description.name
                 .description-selector-icon
                   %span.glyphicon.glyphicon-th-list
-          .col-lg-2.col-lg-offset-2.col-md-2.col-md-offset-4
+          .col-lg-4.col-lg-offset-2.col-md-2.col-md-offset-4
             .btn-group
               %button.description-selector.btn.btn-default-alt.machinery-dropdown.compares
                 .description-selector-header
@@ -41,6 +41,9 @@
                   Select a system to compare
                 .description-selector-icon
                   %span.glyphicon.glyphicon-th-list
+              %button.close-comparison.btn.btn-default-alt{ disabled: "disabled" }
+                .close-comparison-icon
+                  %span.glyphicon.glyphicon-remove-circle
           .description-selector-content.scrollable-menu
             = render_partial "landing_page"
 

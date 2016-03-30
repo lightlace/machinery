@@ -372,3 +372,12 @@ h1 {
 #content_container {
   margin-top: 160px !important;
 }
+.close-comparison {
+  width: 60px;
+}
+.close-comparison-icon {
+  color: #FFF;
+  font-size: 2em;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
