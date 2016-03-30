@@ -49,4 +49,8 @@ $(document).ready(function () {
       $(".show-description").hide();
     }
   });
+
+  $(".description-selector-overlay").click(function(){
+    $(".machinery-dropdown:enabled").trigger('click');
+  });
 })
