@@ -295,6 +295,12 @@ h1 {
 .selected-description {
   border: 2px solid #E6AB5B !important;
 }
+.selected-description-left {
+  border-left: 2px solid #E6AB5B !important;
+}
+.selected-description-right {
+  border-right: 2px solid #E6AB5B !important;
+}
 .description-container {
   border-radius: 10px;
   border: 2px solid #000;
@@ -317,13 +323,13 @@ h1 {
   float: left;
   margin-left: 50px;
 }
-.compare-button {
-  float: right;
-  margin-right: 5px;
-}
-.show-button {
+.action-btn-first {
   float: right;
   margin-right: 21px;
+}
+.action-btn {
+  float: right;
+  margin-left: 2px;
 }
 .icon {
   color: #E6AB5B;

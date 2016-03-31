@@ -30,5 +30,13 @@ $(document).ready(function () {
   $(".glyphicon-menu-hamburger").click(function(){
     $(".hamburger-menu-container").toggleClass("sidebar-hidden");
     $(".sidebar").toggleClass("sidebar-hidden");
+    if($(".sidebar").hasClass('sidebar-hidden')){
+      $(".welcome").css("margin-left", "0");
+    }else{
+      $(".welcome").css("margin-left", "500px");
+    }
+  });
+  $( ".sidebar" ).mouseleave(function() {
+    $(".glyphicon-menu-hamburger").trigger("click");
   });
 })
