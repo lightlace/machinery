@@ -11,16 +11,16 @@
     - selected = ""
     - left = { href: "#", disabled: "disabled" }
     - right = { href: "#", disabled: "disabled" }
-    - expand = { :href => "/#{key}" }
+    - expand = { :href => "/#{key}", title: "Show description" }
     - if @description && @description.name == key
       - selected = "selected-description"
-      - expand = { href: "#", disabled: "disabled" }
+      - expand = { href: "#", disabled: "disabled", title: "Show description" }
     - if @description && @description.name != key
-      - right = { href: "/compare/#{@description.name}/#{key}" }
+      - right = { href: "/compare/#{@description.name}/#{key}", title: "Compare right" }
     - if @description_a && @description_a.name != key
-      - right = { href: "/compare/#{@description_a.name}/#{key}" }
+      - right = { href: "/compare/#{@description_a.name}/#{key}", title: "Compare right" }
     - if @description_b && @description_b.name != key
-      - left = { href: "/compare/#{key}/#{@description_b.name}" }
+      - left = { href: "/compare/#{key}/#{@description_b.name}", title: "Compare left" }
     - if @description_b && @description_b.name == key
       - selected = "selected-description-right"
       - right = { href: "#", disabled: "disabled" }
