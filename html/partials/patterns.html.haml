@@ -6,6 +6,11 @@
         :scope => "patterns",
         :title => "Patterns",
         :count => "#{patterns.length} #{Machinery.pluralize(patterns.length, "pattern")}"
+      - if @dpkg_note
+        .row
+          .col-xs-1
+          .col-xs-11
+            = @dpkg_note
       .row.scope_content.collapse.in
         .col-xs-1
         .col-xs-11

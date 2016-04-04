@@ -347,6 +347,11 @@ class Server < Sinatra::Base
           file.diff = diff_to_object(File.read(path)) if File.exist?(path)
         end
       end
+
+      if @description.packages && @description.packages.package_system == "dpkg"
+        @dpkg_note = "Note: Tasks on Debian-like systems are treated as patterns."
+      end
+
       haml File.read(File.join(Machinery::ROOT, "html/index.html.haml"))
     end
   end

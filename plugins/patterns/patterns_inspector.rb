@@ -32,20 +32,25 @@ class PatternsInspector < Inspector
         inspect_with_tasksel
       else
         @patterns_supported = false
-        @status = "For a patterns inspection please install the package tasksel " \
+        @status = "For a patterns (tasks) inspection please install the package tasksel " \
           "on the inspected system."
         @description.patterns = PatternsScope.new
       end
     else
       @patterns_supported = false
-      @status = "Patterns are not supported on this system."
+      @status = "Patterns or tasks are not supported on this system."
       @description.patterns = PatternsScope.new
     end
   end
 
   def summary
     if @patterns_supported
-      "Found #{Machinery.pluralize(@description.patterns.count, "%d pattern")}."
+      concept = if @system.has_command?("dpkg")
+        "task"
+      else
+        "pattern"
+      end
+      "Found #{Machinery.pluralize(@description.patterns.count, "%d #{concept}")}."
     else
       @status
     end

@@ -79,6 +79,10 @@ class InspectTask
     scopes.each do |scope|
       inspector = Inspector.for(scope).new(system, description)
       Machinery::Ui.puts "Inspecting #{Machinery::Ui.internal_scope_list_to_string(inspector.scope)}..."
+      if scope == "patterns" && description.packages &&
+          description.packages.package_system == "dpkg"
+        Machinery::Ui.puts "Note: Tasks on Debian-like systems are treated as patterns."
+      end
 
       element_filters = filter.element_filters_for_scope(scope)
       effective_filter.set_element_filters_for_scope(scope, element_filters)
