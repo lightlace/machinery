@@ -38,12 +38,14 @@
             - if @diff["unmanaged_files"].only_in1
               = only_in_a
               = render_partial "compare/unmanaged_file_list",
-                list: @diff["unmanaged_files"].only_in1
+                list: @diff["unmanaged_files"].only_in1,
+                common: @diff["unmanaged_files"].common
           .col-md-6.table_container
             - if @diff["unmanaged_files"].only_in2
               = only_in_b
               = render_partial "compare/unmanaged_file_list",
-                list: @diff["unmanaged_files"].only_in2
+                list: @diff["unmanaged_files"].only_in2,
+                common: @diff["unmanaged_files"].common
         - if @diff["unmanaged_files"].changed
           %a.both_anchor{ id: "unmanaged_files_changed" }
           .row
@@ -62,4 +64,5 @@
           .row.scope_common_content.collapse
             .col-md-12.table_container
               = in_both
-              = render_partial "compare/unmanaged_file_list", list: @diff["unmanaged_files"].common
+              = render_partial "compare/unmanaged_file_list", list: @diff["unmanaged_files"].common,
+              common: @diff["unmanaged_files"].common

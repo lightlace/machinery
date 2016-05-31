@@ -1,18 +1,18 @@
-- unless list.extracted.nil?
+- unless list.extracted.nil? && common.extracted.nil?
   %p
-    <strong>Files extracted:</strong> #{list.extracted ? "yes" : "no"}
+    <strong>Files extracted:</strong> #{list.extracted || common.extracted ? "yes" : "no"}
 - unless list.elements.empty?
   %table.table.table-striped.table-hover.table-condensed.files-table
     %thead
       %tr
         %th Name
         %th.small Type
-        - if list.has_metadata
+        - if common.has_metadata || list.has_metadata
           %th.medium Mode
           %th.medium User
           %th.medium Group
           %th.medium Size
-          - if list.any?(&:file_objects)
+          - if list.file_objects_exist
             %th.medium File Objects
           - else
             %th.medium Subdir.
@@ -22,16 +22,16 @@
         %tr
           %td= file.name
           %td= file.type
-          - if list.has_metadata
+          - if common.has_metadata || list.has_metadata
             %td= file.mode
             %td= file.user
             %td= file.group
             %td= number_to_human_size(file.size)
-            - if list.any?(&:file_objects)
+            - if list.file_objects_exist
               %td
-                = file.file_objects if file.file_objects
+                = file.file_objects
             - else
               %td
-                = file.dirs if file.dirs
+                = file.dirs
               %td
-                = file.files if file.files
+                = file.files
