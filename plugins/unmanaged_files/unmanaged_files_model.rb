@@ -59,8 +59,8 @@ class UnmanagedFilesScope < FileScope
     end
 
     comparison = [
-      self.class.new(only_self, only_self_attributes || common_attributes ),
-      self.class.new(only_other, only_other_attributes || common_attributes ),
+      self.class.new(only_self, only_self_attributes || {} ),
+      self.class.new(only_other, only_other_attributes || {} ),
       changed
     ].map { |e| e.empty? ? nil : e }
 
@@ -71,6 +71,10 @@ class UnmanagedFilesScope < FileScope
     end
 
     comparison.push(common)
+  end
+
+  def file_objects_exist
+    self.any?(&:file_objects)
   end
 
   private
