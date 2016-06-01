@@ -139,11 +139,23 @@ class Renderer
 
     heading(display_name) if show_heading
 
-    render_comparison_only_in(comparison.as_description(:one))
-    render_comparison_only_in(comparison.as_description(:two))
+    unless comparison.scope == "unmanaged_files"
+      render_comparison_only_in(comparison.as_description(:one))
+      render_comparison_only_in(comparison.as_description(:two))
+    else
+      render_comparison_only_in_unmanaged_files(comparison.as_description(:one), comparison.common)
+      render_comparison_only_in_unmanaged_files(comparison.as_description(:two), comparison.common)
+    end
     render_comparison_changed(comparison) if comparison.changed
     render_comparison_common(comparison.as_description(:common)) if @options[:show_all]
+
     @buffer
+  end
+
+  def render_comparison_only_in_unmanaged_files(description, common_attr)
+    return if !description[scope] || description[scope].elements.try(:empty?)
+    puts "Only in '#{description.name}':"
+    indent { compare_content_only_in_unmanaged_files(description, common_attr) }
   end
 
   def render_comparison_only_in(description)
@@ -166,6 +178,10 @@ class Renderer
     puts "Common to both systems:"
     indent { compare_content_common(description) }
     @buffer += "\n" unless @buffer.empty? || @buffer.end_with?("\n\n")
+  end
+
+  def compare_content_only_in_unmanaged_files(description, common_attr)
+    content(description, common_attr)
   end
 
   def compare_content_only_in(description)

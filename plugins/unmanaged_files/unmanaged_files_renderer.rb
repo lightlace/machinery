@@ -16,11 +16,11 @@
 # you may find current contact information at www.suse.com
 
 class UnmanagedFilesRenderer < Renderer
-  def content(description)
+  def content(description, common)
     return unless description["unmanaged_files"]
 
     list do
-      file_status = description["unmanaged_files"].extracted
+      file_status = description["unmanaged_files"].extracted || common.extracted
 
       if description["unmanaged_files"].elements.empty?
         puts "There are no unmanaged files."
@@ -30,7 +30,7 @@ class UnmanagedFilesRenderer < Renderer
 
       if description["unmanaged_files"]
         description["unmanaged_files"].each do |p|
-          if description["unmanaged_files"].has_metadata
+          if description["unmanaged_files"].has_metadata || common.has_metadata
             item "#{p.name} (#{p.type})" do
               puts "User/Group: #{p.user}:#{p.group}" if p.user || p.group
               puts "Mode: #{p.mode}" if p.mode
