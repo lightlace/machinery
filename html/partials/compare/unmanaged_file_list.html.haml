@@ -1,13 +1,13 @@
-- unless list.extracted.nil? && common.extracted.nil?
+- unless list.extracted.nil? && common["extracted"].nil?
   %p
-    <strong>Files extracted:</strong> #{list.extracted || common.extracted ? "yes" : "no"}
+    <strong>Files extracted:</strong> #{list.extracted || common["extracted"] ? "yes" : "no"}
 - unless list.elements.empty?
   %table.table.table-striped.table-hover.table-condensed.files-table
     %thead
       %tr
         %th Name
         %th.small Type
-        - if common.has_metadata || list.has_metadata
+        - if common["has_metadata"] || list.has_metadata
           %th.medium Mode
           %th.medium User
           %th.medium Group
@@ -22,7 +22,7 @@
         %tr
           %td= file.name
           %td= file.type
-          - if common.has_metadata || list.has_metadata
+          - if common["has_metadata"] || list.has_metadata
             %td= file.mode
             %td= file.user
             %td= file.group

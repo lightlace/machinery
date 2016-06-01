@@ -143,8 +143,8 @@ class Renderer
       render_comparison_only_in(comparison.as_description(:one))
       render_comparison_only_in(comparison.as_description(:two))
     else
-      render_comparison_only_in_unmanaged_files(comparison.as_description(:one), comparison.common)
-      render_comparison_only_in_unmanaged_files(comparison.as_description(:two), comparison.common)
+      render_comparison_only_in_unmanaged_files(comparison.as_description(:one), comparison.common.attributes)
+      render_comparison_only_in_unmanaged_files(comparison.as_description(:two), comparison.common.attributes)
     end
     render_comparison_changed(comparison) if comparison.changed
     render_comparison_common(comparison.as_description(:common)) if @options[:show_all]
