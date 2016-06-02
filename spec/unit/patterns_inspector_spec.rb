@@ -125,6 +125,14 @@ EOF
         expect { patterns_inspector.inspect(filter) }.to raise_error(
           Machinery::Errors::ZypperFailed, /Zypper is locked./)
       end
+
+      it "returns pattern_system zypper" do
+	expect(system).to receive(:run_command).and_return(zypper_output)
+
+	patterns_inspector.inspect(filter)
+        pattern_system = description.patterns.attributes.pattern_system
+        expect(pattern_system).to eq("zypper")
+      end
     end
 
     context "on a tasksel based OS" do
@@ -148,6 +156,14 @@ EOF
         )
 
         expect(patterns_inspector.summary).to include("Found 5 patterns")
+      end
+
+      it "returns pattern_system tasksel" do
+	expect(system).to receive(:run_command).and_return(zypper_output)
+
+	patterns_inspector.inspect(filter)
+        pattern_system = description.patterns.attributes.pattern_system
+        expect(pattern_system).to eq("tasksel")
       end
     end
 
