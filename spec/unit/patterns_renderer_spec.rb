@@ -64,7 +64,7 @@ describe PatternsRenderer do
       it "does show pattern_sytem zypper" do
         output = subject.render(system_description)
 
-        expect(output).to include("Pattern Manager: zypper")
+        expect(output).to include("Pattern Manager: tasksel")
       end
     end
   end
