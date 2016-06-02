@@ -35,6 +35,12 @@ describe PatternsRenderer do
         expect(output).not_to include("Note: Tasks on Debian-like systems are treated as patterns.")
       end
 
+      it "does show pattern_sytem zypper" do
+        output = subject.render(system_description)
+
+        expect(output).to include("Pattern Manager: zypper")
+      end
+
       context "when there are no patterns" do
         let(:system_description) { create_test_description(scopes: ["empty_patterns"]) }
 
@@ -53,6 +59,12 @@ describe PatternsRenderer do
         output = subject.render(system_description)
 
         expect(output).to include("Note: Tasks on Debian-like systems are treated as patterns.")
+      end
+
+      it "does show pattern_sytem zypper" do
+        output = subject.render(system_description)
+
+        expect(output).to include("Pattern Manager: zypper")
       end
     end
   end
