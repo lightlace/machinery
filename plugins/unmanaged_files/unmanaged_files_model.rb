@@ -74,7 +74,7 @@ class UnmanagedFilesScope < FileScope
   end
 
   def file_objects_exist
-    self.any?(&:file_objects)
+    @file_object_count ||= self.any?(&:file_objects)
   end
 
   private
