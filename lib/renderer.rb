@@ -117,7 +117,7 @@ class Renderer
       heading(header)
     end
 
-    content(system_description)
+    content(system_description, nil)
 
     @buffer += "\n" unless @buffer.empty? || @buffer.end_with?("\n\n")
 
