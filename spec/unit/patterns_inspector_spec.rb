@@ -130,7 +130,7 @@ EOF
 	expect(system).to receive(:run_command).and_return(zypper_output)
 
 	patterns_inspector.inspect(filter)
-        pattern_system = description.patterns.attributes[:pattern_system]
+        pattern_system = description.patterns.attributes["pattern_system"]
         expect(pattern_system).to eq("zypper")
       end
     end
@@ -162,7 +162,7 @@ EOF
 	expect(system).to receive(:run_command).and_return(zypper_output)
 
 	patterns_inspector.inspect(filter)
-        pattern_system = description.patterns.attributes[:pattern_system]
+        pattern_system = description.patterns.attributes["pattern_system"]
         expect(pattern_system).to eq("tasksel")
       end
     end
