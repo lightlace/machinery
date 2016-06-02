@@ -23,7 +23,7 @@ class PatternsRenderer < Renderer
       puts "There are no patterns or tasks."
     end
 
-    if description.packages && description.packages.package_system == "dpkg"
+    if description.patterns.patterns_system == "dpkg"
       puts "Note: Tasks on Debian-like systems are treated as patterns."
     end
 

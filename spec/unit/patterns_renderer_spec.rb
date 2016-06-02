@@ -53,7 +53,7 @@ describe PatternsRenderer do
     end
 
     context "when showing a Debian based system" do
-      let(:system_description) { create_test_description(scopes: ["patterns", "dpkg_packages"]) }
+      let(:system_description) { create_test_description(scopes: ["patterns_with_dpkg"]) }
 
       it "shows a note" do
         output = subject.render(system_description)

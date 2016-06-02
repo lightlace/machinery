@@ -51,4 +51,5 @@ class Migrate9To10 < Migration
         "_elements" => @hash["patterns"]["_elements"]
       }
     end
+  end
 end

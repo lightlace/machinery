@@ -7,7 +7,22 @@
   ],
   "properties": {
     "_attributes": {
-      "type": "object"
+      "type": "object",
+      "required": [
+        "patterns_system"
+      ],
+      "properties": {
+        "patterns_system": {
+          "oneOf": [
+            {
+              "enum": ["zypper"]
+            },
+            {
+              "enum": ["dpkg"]
+            }
+          ]
+        }
+      }
     },
     "_elements": {
       "oneof": [
@@ -55,4 +70,3 @@
     }
   }
 }
-
