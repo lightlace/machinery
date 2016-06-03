@@ -23,12 +23,12 @@ class PatternsRenderer < Renderer
       puts "There are no patterns or tasks."
     end
 
-    if description.patterns.patterns_system == "dpkg"
+    if description.patterns.patterns_system == "tasksel"
       puts "Note: Tasks on Debian-like systems are treated as patterns."
-      puts "Pattern Manager: tasksel"
-    else
-      puts "Pattern Manager: zypper"
     end
+
+    puts "Pattern Manager: #{description.patterns.patterns_system}" unless \
+      description.patterns.empty?
 
     list do
       description.patterns.each do |p|
