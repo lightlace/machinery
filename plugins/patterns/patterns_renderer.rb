@@ -25,6 +25,9 @@ class PatternsRenderer < Renderer
 
     if description.patterns.patterns_system == "dpkg"
       puts "Note: Tasks on Debian-like systems are treated as patterns."
+      puts "Pattern Manager: tasksel"
+    else
+      puts "Pattern Manager: zypper"
     end
 
     list do
