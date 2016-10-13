@@ -16,7 +16,7 @@
 # you may find current contact information at www.suse.com
 
 class RemoteSystem < System
-  attr_reader :host, :remote_user, :ssh_port, :ssh_identity_file, :connection_tried
+  attr_reader :host, :remote_user, :ssh_port, :ssh_identity_file
 
   def type
     "remote"
@@ -178,10 +178,8 @@ class RemoteSystem < System
   private
 
   def try_connect(privileged: false)
-    return if @connection_tried
-    check_connection
-    check_sudo if privileged && sudo_required?
-    @connection_tried = true
+    @tried_connection ||= check_connection
+    @tried_sudo ||= check_sudo if privileged && sudo_required?
   end
 
   def sudo_required?
