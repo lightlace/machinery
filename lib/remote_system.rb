@@ -16,7 +16,7 @@
 # you may find current contact information at www.suse.com
 
 class RemoteSystem < System
-  attr_reader :host, :remote_user, :ssh_port, :ssh_identity_file
+  attr_reader :host, :remote_user, :ssh_port, :ssh_identity_file, :connection_tried
 
   def type
     "remote"
@@ -33,20 +33,15 @@ class RemoteSystem < System
     @remote_user = options[:remote_user]
     @ssh_port = options[:ssh_port]
     @ssh_identity_file = options[:ssh_identity_file]
-
-    connect
+    @connection_tried = false
   end
 
   def requires_root?
     false
   end
 
-  def connect
-    check_connection
-    check_sudo if sudo_required?
-  end
-
   def run_command(*args)
+    try_connect(privileged: options[:privileged])
     options = args.last.is_a?(Hash) ? args.pop : {}
 
     # There are three valid ways how to call Cheetah.run, whose interface this
@@ -101,7 +96,7 @@ class RemoteSystem < System
   # Machinery::Errors::RsyncFailed exception when it's not successful. Destination is
   # the directory where to put the files.
   def retrieve_files(filelist, destination)
-    source = "#{remote_user}@#{host}:/"
+    try_connect(privileged: sudo_required?)
     rsync_path = if sudo_required?
       "sudo -n rsync"
     else
@@ -114,7 +109,7 @@ class RemoteSystem < System
       "--chmod=go-rwx",
       "--files-from=-",
       "--rsync-path=#{rsync_path}",
-      source,
+      "#{remote_user}@#{host}:/",
       destination,
       stdout: :capture,
       stdin: filelist.join("\n")
@@ -135,6 +130,7 @@ class RemoteSystem < System
 
   # Reads a file from the System. Returns nil if it does not exist.
   def read_file(file, options = {})
+    try_connect(privileged: options[:privileged])
     command_options = {
       stdout: :capture,
       privileged: options.fetch(:privileged, false)
@@ -151,6 +147,7 @@ class RemoteSystem < System
 
   # Copies a file to the system
   def inject_file(source, destination)
+    try_connect
     destination = "#{remote_user}@#{host}:#{destination}"
 
     cmd = [
@@ -170,6 +167,7 @@ class RemoteSystem < System
 
   # Removes a file from the system
   def remove_file(file)
+    try_connect
     run_command("rm", file)
   rescue Cheetah::ExecutionFailed => e
     raise Machinery::Errors::RemoveFileFailed.new(
@@ -178,6 +176,13 @@ class RemoteSystem < System
   end
 
   private
+
+  def try_connect(privileged: false)
+    return if @connection_tried
+    check_connection
+    check_sudo if privileged && sudo_required?
+    @connection_tried = true
+  end
 
   def sudo_required?
     remote_user != "root"
