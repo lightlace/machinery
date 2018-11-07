@@ -91,7 +91,7 @@ describe Machinery::RemoteSystem do
         expect {
           remote_system_with_sudo
         }.to raise_error(
-          Machinery::Errors::SudoNoPasswordRequired,
+          Machinery::Errors::SudoPasswordRequired,
           /Make sure that you have the following line in/
         )
       end
