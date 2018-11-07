@@ -152,10 +152,11 @@ module Machinery
         " Remove the 'requiretty' settings from /etc/sudoers by running `visudo`."
       end
     end
-
+		
+		# An error for inspecting a remote system as a non-root user
     class SudoNoPasswordRequired < MachineryError
       def initialize(host)
-	      @host = host
+	    	@host = host
       end
 
       def to_s
