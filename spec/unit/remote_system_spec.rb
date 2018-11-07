@@ -77,7 +77,7 @@ describe Machinery::RemoteSystem do
           Machinery::Errors::SudoMissingTTY,
           /Remove the 'requiretty' settings from \/etc\/sudoers by running `visudo`\./
         )
-			end
+      end
 
       it "raises an exception if user has no password-less sudo rights" do
         expect(Machinery::LoggedCheetah).to receive(:run).with(
@@ -94,7 +94,7 @@ describe Machinery::RemoteSystem do
           Machinery::Errors::SudoNoPasswordRequired,
           /Make sure that you have the following line in/
         )
-			end
+      end
     end
 
     context "when an ssh port is given" do
