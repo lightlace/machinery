@@ -153,10 +153,10 @@ module Machinery
       end
     end
 
-	  # An error for inspecting a remote system as a non-root user
-    class SudoNoPasswordRequired < MachineryError
+    # An error for inspecting a remote system as a non-root user
+    class SudoPasswordRequired < MachineryError
       def initialize(host)
-	      @host = host
+        @host = host
       end
 
       def to_s
