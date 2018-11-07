@@ -217,7 +217,7 @@ class Machinery::RemoteSystem < Machinery::System
     elsif e.stderr && e.stderr.include?("you must have a tty to run sudo")
       raise Machinery::Errors::SudoMissingTTY.new(host)
 		elsif e.stderr && e.stderr.include?("no tty present and no askpass program specified")
-      raise Machinery::Errors::SudoNoPasswordRequired.new(remote_user, host)
+      raise Machinery::Errors::SudoNoPasswordRequired.new(host)
     else
       raise e
     end

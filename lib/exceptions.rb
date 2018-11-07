@@ -160,8 +160,8 @@ module Machinery
       end
 
       def to_s
-        "'sudo' can be used only on #{host}, when no password is required." \
-        " Make sure that you have the following line in 'etc/sudoers' on #{remote_host}" \
+        "'sudo' can be used only on #{@host}, when no password is required." \
+        " Make sure that you have the following line in 'etc/sudoers' on the remote host" \
        	" machinery ALL=(ALL) NOPASSWD: ALL"
       end
     end
